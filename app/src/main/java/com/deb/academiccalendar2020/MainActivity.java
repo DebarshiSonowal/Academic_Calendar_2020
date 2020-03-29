@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         foodlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent m = new Intent(getApplicationContext(),Main3Activity.class);
+                Intent m = new Intent(getApplicationContext(),Main4Activity.class);
                 m.putExtra("list","food");
 
                 startActivity(m);

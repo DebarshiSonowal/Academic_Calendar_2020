@@ -148,8 +148,8 @@ public class Main2Activity extends AppCompatActivity {
                 if (dayoftheweek.equals("Sunday")) {
 //                    Toast.makeText(getApplicationContext(),"বন্ধৰ দিন",Toast.LENGTH_SHORT).show();
                     status.setText("বন্ধৰ দিন");
-                    event.setVisibility(View.VISIBLE);
-                    bondho.setVisibility(View.VISIBLE);
+                    event.setVisibility(View.INVISIBLE);
+                    bondho.setVisibility(View.INVISIBLE);
                     food.setText("");
 
                 } else if (flag) {
@@ -191,8 +191,8 @@ public class Main2Activity extends AppCompatActivity {
 
                     status.setText("বন্ধৰ দিন");
                     food.setText("");
-                    event.setVisibility(View.VISIBLE);
-                    bondho.setVisibility(View.VISIBLE);
+                    event.setVisibility(View.INVISIBLE);
+                    bondho.setVisibility(View.INVISIBLE);
                 } else if (flag) {
                     flag = false;
                     status.setText("বন্ধৰ দিন");
