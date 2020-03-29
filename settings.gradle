@@ -1,0 +1,2 @@
+rootProject.name='Academic Calendar 2020'
+include ':app'
