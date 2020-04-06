@@ -7,6 +7,10 @@ import android.text.method.ScrollingMovementMethod;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import java.util.Calendar;
 
 public class Main3Activity extends AppCompatActivity {
@@ -15,6 +19,8 @@ public class Main3Activity extends AppCompatActivity {
     ListView list;
     TextView mTextView;
     String mString;
+    AdView mAdView1,mAdView2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +29,13 @@ public class Main3Activity extends AppCompatActivity {
 
         //Text
         mTextView = findViewById(R.id.textView7);
+        mAdView1 = findViewById(R.id.adView5);
+        mAdView2 = findViewById(R.id.adView4);
 
+        MobileAds.initialize(this, "ca-app-pub-7260156644744320~6674653902");
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView1.loadAd(adRequest);
+        mAdView2.loadAd(adRequest);
         //get string
         Bundle bundle = getIntent().getExtras();
         mString = bundle.getString("list");

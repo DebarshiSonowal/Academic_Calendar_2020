@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,7 +24,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class Main2Activity extends AppCompatActivity {
-
+    AdView mAdView;
+    InterstitialAd mInterstitialAd;
     //variable
     Calendar sCalendar;
     Boolean flag = false;
@@ -41,6 +46,19 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        //connecting
+        event = findViewById(R.id.event_view);
+        food = findViewById(R.id.food_view);
+        status = findViewById(R.id.status_view);
+        mAdView = findViewById(R.id.adView3);
+        date_1 = findViewById(R.id.date_view);
+        bondho = findViewById(R.id.textView);
+
+
+        MobileAds.initialize(this, "ca-app-pub-7260156644744320~6674653902");
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
         //Dictionary
@@ -68,12 +86,7 @@ public class Main2Activity extends AppCompatActivity {
         mDateList.add("26/10");mDateList.add("14/11");mDateList.add("20/11");mDateList.add("30/11");
         mDateList.add("02/12");mDateList.add("25/12");
 
-        //connecting
-        event = findViewById(R.id.event_view);
-        food = findViewById(R.id.food_view);
-        status = findViewById(R.id.status_view);
-        date_1 = findViewById(R.id.date_view);
-        bondho = findViewById(R.id.textView);
+
         //Calendar
         compactCalendar = findViewById(R.id.calendarView);
         compactCalendar.setUseThreeLetterAbbreviation(true);

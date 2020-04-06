@@ -1,23 +1,35 @@
 package com.deb.academiccalendar2020;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+    AdView mAdView;
+    InterstitialAd mInterstitialAd;
+    TextView mDate,mStatus,food_view;
+    ImageView cal,lst,foodlist;
+    String date_n = new SimpleDateFormat(" dd-MMM-yyyy", Locale.getDefault()).format(new Date());
+    SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+    SimpleDateFormat sdfo = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+    Date d = new Date();
+    String dayOfTheWeek = sdf.format(d);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Declaration
-        TextView mDate,mStatus,food_view;
-        ImageView cal,lst,foodlist;
-        String date_n = new SimpleDateFormat(" dd-MMM-yyyy", Locale.getDefault()).format(new Date());
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
-        SimpleDateFormat sdfo = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        Date d = new Date();
-        String dayOfTheWeek = sdf.format(d);
+
 
         //Findviews
         foodlist= findViewById(R.id.imageView4);
@@ -43,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
         mStatus = findViewById(R.id.status_view);
         cal = findViewById(R.id.imageView);
         lst = findViewById(R.id.imageView2);
+        mAdView = findViewById(R.id.adView);
+
+        //Ads
+        MobileAds.initialize(this, "ca-app-pub-7260156644744320~6674653902");
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-7260156644744320/9067925096");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.show();
 
         //Creating object of check class
         check mCheck = new check(d);
