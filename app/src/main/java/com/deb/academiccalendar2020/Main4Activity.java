@@ -12,6 +12,15 @@ import com.google.android.gms.ads.MobileAds;
 public class Main4Activity extends AppCompatActivity {
     WebView mWebView;
     AdView mAdView1,mAdView2;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mAdView1.destroy();
+        mAdView2.destroy();
+        mWebView.destroy();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

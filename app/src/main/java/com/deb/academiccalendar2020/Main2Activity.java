@@ -28,21 +28,32 @@ import java.util.Locale;
 
 public class Main2Activity extends AppCompatActivity {
     AdView mAdView;
-    InterstitialAd mInterstitialAd;
     //variable
-    Calendar sCalendar;
     Boolean flag = false;
     CompactCalendarView compactCalendar;
     Date mDate = new Date();
     TextView event, date_1, food, status,bondho,month;
-
+    Dictionary mDict,dictionary;
+List<String> mDateList;
+CompactCalendarView.CompactCalendarViewListener mListener;
     //Date formats
-    Locale locale;
+
     private SimpleDateFormat asd = new SimpleDateFormat("dd/MM", Locale.getDefault());
     private SimpleDateFormat sdf = new SimpleDateFormat("EEEE", Locale.getDefault());
     private SimpleDateFormat sdfo = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compactCalendar = null;
+        mDict=null;
+        dictionary = null;
+        mDateList = null;
+        mAdView.destroy();
+
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("WrongConstant")
@@ -66,7 +77,7 @@ public class Main2Activity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.parseColor("#F5F5F7"));
 
         //Dictionary
-        final Dictionary mDict = new Hashtable();
+       mDict = new Hashtable();
         mDict.put("15/01", "মাঘ বিহু");mDict.put("16/01", "মাঘ বিহু আৰু টুছু পূজা");mDict.put("23/01", " নেতাজীৰ জন্মদিন");mDict.put("26/01", "গণতন্ত্ৰ দিৱস");
         mDict.put("28/01", "গৌথাৰ বাথৌ চান");mDict.put("31/01", "মে দাম-মেফি");mDict.put("09/02", "বীৰ চিলাৰায় দিৱস");mDict.put("09/03", "দৌল যাত্ৰা");
         mDict.put("10/04", "গুড ফ্ৰাইডে");mDict.put("13/04", " ব’হাগ বিহু");mDict.put("14/04", " ব’হাগ বিহু");mDict.put("15/04", " ব’হাগ বিহু");
@@ -89,7 +100,7 @@ public class Main2Activity extends AppCompatActivity {
         mDict.put("30/07","গ্ৰীষ্ম বন্ধ"); mDict.put("31/07","গ্ৰীষ্ম বন্ধ");
 
         //Datelist
-        final List<String> mDateList = new ArrayList<>();
+        mDateList = new ArrayList<>();
         mDateList.add(sdfo.format(mDate));
         mDateList.add("15/01");mDateList.add("16/01");mDateList.add("23/01");mDateList.add("26/01");
         mDateList.add("28/01");mDateList.add("31/01");mDateList.add("09/02");mDateList.add("09/03");
@@ -111,7 +122,7 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
-        final Dictionary dictionary = new Hashtable();
+        dictionary = new Hashtable();
         dictionary.put("17/01","শিল্পী দিৱস");dictionary.put("29/01","সৰস্বতী পূজা"); dictionary.put("03/02","বাৰ্ষিক খেল-ধেমালি");
         dictionary.put("04/02","বাৰ্ষিক খেল-ধেমালি"); dictionary.put("05/02","বাৰ্ষিক খেল-ধেমালি"); dictionary.put("06/02","বঁটা বিতৰণী অনুষ্ঠান");
         dictionary.put("28/02","ৰাষ্ট্ৰীয় বিজ্ঞান দিৱস");dictionary.put("04/03","শশিশু সুৰক্ষা দিৱস");dictionary.put("07/04","বিশ্ব স্বাস্থ্য দিৱস");
@@ -170,7 +181,7 @@ public class Main2Activity extends AppCompatActivity {
         }
 
         //Calendar listener
-        compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+        compactCalendar.setListener(mListener= new CompactCalendarView.CompactCalendarViewListener() {
 
             @Override
             public void onDayClick(Date dateClicked) {
