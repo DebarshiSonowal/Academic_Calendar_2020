@@ -44,7 +44,7 @@ public class check {
         }
         else if(sdf.format(mDate).equals("Saturday"))
         {
-            mString = "খিচিৰি/পোলাও/স্থানীয়া খাদ্য/সেউজীয়া শাক-পাচলি";
+            mString = "খিচিৰি/পোলাও/স্থানীয় খাদ্য/সেউজীয়া শাক-পাচলি";
         }
         else {
             mString = "";

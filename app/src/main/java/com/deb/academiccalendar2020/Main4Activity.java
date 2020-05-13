@@ -19,8 +19,8 @@ public class Main4Activity extends AppCompatActivity {
 
         mWebView = findViewById(R.id.web);
 
-        mWebView.loadUrl("file:///android_asset/food.html");
-
+//        mWebView.loadUrl("file:///android_asset/food.html");
+        mWebView.loadUrl("file:///android_asset/MDM.html");
         mAdView1 = findViewById(R.id.adView6);
         mAdView2 = findViewById(R.id.adView7);
 

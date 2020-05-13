@@ -1,9 +1,12 @@
 package com.deb.academiccalendar2020;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -31,7 +34,7 @@ public class Main2Activity extends AppCompatActivity {
     Boolean flag = false;
     CompactCalendarView compactCalendar;
     Date mDate = new Date();
-    TextView event, date_1, food, status,bondho;
+    TextView event, date_1, food, status,bondho,month;
 
     //Date formats
     Locale locale;
@@ -41,6 +44,7 @@ public class Main2Activity extends AppCompatActivity {
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +58,12 @@ public class Main2Activity extends AppCompatActivity {
         mAdView = findViewById(R.id.adView3);
         date_1 = findViewById(R.id.date_view);
         bondho = findViewById(R.id.textView);
-
+        month = findViewById(R.id.month);
 
         MobileAds.initialize(this, "ca-app-pub-7260156644744320~6674653902");
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
+        getWindow().setStatusBarColor(Color.parseColor("#F5F5F7"));
 
         //Dictionary
         final Dictionary mDict = new Hashtable();
@@ -72,6 +76,17 @@ public class Main2Activity extends AppCompatActivity {
         mDict.put("17/10", " কাতি বিহু");mDict.put("23/10", "দুৰ্গাপূজা");mDict.put("24/10", "দুৰ্গাপূজা");mDict.put("25/10", "দুৰ্গাপূজা");
         mDict.put("26/10", "দুৰ্গাপূজা");mDict.put("14/11", "কালী পূজা আৰু দেৱালী/শিশু দিৱস");mDict.put("20/11", "ষট্ পূজা");mDict.put("24/11", "লাচিত দিৱস");
         mDict.put("30/11", "গুৰু নানকৰ জন্মদিন");mDict.put("02/12", " অসম দিৱস");mDict.put("25/12", " বৰদিন");
+        mDict.put("01/07","গ্ৰীষ্ম বন্ধ"); mDict.put("02/07","গ্ৰীষ্ম বন্ধ"); mDict.put("03/07","গ্ৰীষ্ম বন্ধ");
+        mDict.put("04/07","গ্ৰীষ্ম বন্ধ"); mDict.put("05/07","গ্ৰীষ্ম বন্ধ"); mDict.put("06/07","গ্ৰীষ্ম বন্ধ");
+        mDict.put("07/07","গ্ৰীষ্ম বন্ধ"); mDict.put("08/07","গ্ৰীষ্ম বন্ধ"); mDict.put("08/07","গ্ৰীষ্ম বন্ধ");
+        mDict.put("09/07","গ্ৰীষ্ম বন্ধ"); mDict.put("10/07","গ্ৰীষ্ম বন্ধ"); mDict.put("11/07","গ্ৰীষ্ম বন্ধ");
+        mDict.put("12/07","গ্ৰীষ্ম বন্ধ"); mDict.put("13/07","গ্ৰীষ্ম বন্ধ"); mDict.put("14/07","গ্ৰীষ্ম বন্ধ");
+        mDict.put("15/07","গ্ৰীষ্ম বন্ধ"); mDict.put("16/07","গ্ৰীষ্ম বন্ধ"); mDict.put("17/07","গ্ৰীষ্ম বন্ধ");
+        mDict.put("18/07","গ্ৰীষ্ম বন্ধ"); mDict.put("19/07","গ্ৰীষ্ম বন্ধ"); mDict.put("20/07","গ্ৰীষ্ম বন্ধ");
+        mDict.put("21/07","গ্ৰীষ্ম বন্ধ"); mDict.put("22/07","গ্ৰীষ্ম বন্ধ"); mDict.put("23/07","গ্ৰীষ্ম বন্ধ");
+        mDict.put("24/07","গ্ৰীষ্ম বন্ধ"); mDict.put("25/07","গ্ৰীষ্ম বন্ধ"); mDict.put("26/07","গ্ৰীষ্ম বন্ধ");
+        mDict.put("27/07","গ্ৰীষ্ম বন্ধ"); mDict.put("28/07","গ্ৰীষ্ম বন্ধ"); mDict.put("29/07","গ্ৰীষ্ম বন্ধ");
+        mDict.put("30/07","গ্ৰীষ্ম বন্ধ"); mDict.put("31/07","গ্ৰীষ্ম বন্ধ");
 
         //Datelist
         final List<String> mDateList = new ArrayList<>();
@@ -84,7 +99,27 @@ public class Main2Activity extends AppCompatActivity {
         mDateList.add("07/09");mDateList.add("09/09");mDateList.add("26/09");mDateList.add("02/10");
         mDateList.add("17/10");mDateList.add("23/10");mDateList.add("24/10");mDateList.add("25/10");
         mDateList.add("26/10");mDateList.add("14/11");mDateList.add("20/11");mDateList.add("30/11");
-        mDateList.add("02/12");mDateList.add("25/12");
+        mDateList.add("02/12");mDateList.add("25/12"); mDateList.add("01/07");mDateList.add("02/07");
+        mDateList.add("03/07");mDateList.add("04/07");mDateList.add("05/07");mDateList.add("06/07");
+        mDateList.add("07/07");mDateList.add("08/07");mDateList.add("09/07");mDateList.add("10/07");
+        mDateList.add("11/07");mDateList.add("12/07");mDateList.add("13/07");mDateList.add("14/07");
+        mDateList.add("15/07");mDateList.add("16/07");mDateList.add("17/07");mDateList.add("18/07");
+        mDateList.add("19/07");mDateList.add("20/07");mDateList.add("21/07");mDateList.add("22/07");
+        mDateList.add("23/07");mDateList.add("24/07");mDateList.add("25/07");mDateList.add("26/07");
+        mDateList.add("27/07");mDateList.add("28/07");mDateList.add("29/07");mDateList.add("30/07");
+        mDateList.add("31/07");
+
+
+
+        final Dictionary dictionary = new Hashtable();
+        dictionary.put("17/01","শিল্পী দিৱস");dictionary.put("29/01","সৰস্বতী পূজা"); dictionary.put("03/02","বাৰ্ষিক খেল-ধেমালি");
+        dictionary.put("04/02","বাৰ্ষিক খেল-ধেমালি"); dictionary.put("05/02","বাৰ্ষিক খেল-ধেমালি"); dictionary.put("06/02","বঁটা বিতৰণী অনুষ্ঠান");
+        dictionary.put("28/02","ৰাষ্ট্ৰীয় বিজ্ঞান দিৱস");dictionary.put("04/03","শশিশু সুৰক্ষা দিৱস");dictionary.put("07/04","বিশ্ব স্বাস্থ্য দিৱস");
+        dictionary.put("25/04","বিশ্ব মেলেৰিয়া দিৱস");dictionary.put("08/05","ৰবীন্দ্ৰ জয়ন্তী");dictionary.put("11/05","ৰাষ্ট্ৰীয় প্ৰযুক্তি দিৱস");
+        dictionary.put("05/06","বিশ্ব পৰিৱেশ দিৱস");dictionary.put("20/06","কলাগুৰু বিষ্ণু ৰাভা দিৱস");dictionary.put("05/09","শিক্ষক দিৱস");
+        dictionary.put("08/09","বিশ্ব সাক্ষৰতা দিৱস");dictionary.put("21/09","বিশ্ব শান্তি দিৱস");dictionary.put("13/10","আন্তৰ্জাতিক দুৰ্যোগ নিবাৰন দিৱস");
+        dictionary.put("14/10","লক্ষ্মীনাথ বেজবৰুৱাৰ জন্ম জয়ন্তী");dictionary.put("15/10","বিশ্ব হাতধোৱা দিৱস");dictionary.put("30/10","শ্ৰীশ্ৰীলক্ষ্মীপূজা");
+
 
 
         //Calendar
@@ -97,10 +132,7 @@ public class Main2Activity extends AppCompatActivity {
         food.setText(mcheck.getString());
 
         //Action Bar
-        final ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setTitle(dateFormatMonth.format(new Date()));
+       month.setText(dateFormatMonth.format(new Date()));
 
         //Checking todays status
         for (int i = 0; i < mDateList.size(); i++) {
@@ -130,9 +162,9 @@ public class Main2Activity extends AppCompatActivity {
         } else {
 //                    Toast.makeText(getApplicationContext(),"শ্ৰেণীৰ দিন",Toast.LENGTH_SHORT).show();
             status.setText("শ্ৰেণীৰ দিন");
-            event.setText("");
-            event.setVisibility(View.INVISIBLE);
-            bondho.setVisibility(View.INVISIBLE);
+            event.setVisibility(View.VISIBLE);
+            bondho.setVisibility(View.VISIBLE);
+            event.setText((String)dictionary.get(asd.format(mDate)));
 
 
         }
@@ -175,9 +207,10 @@ public class Main2Activity extends AppCompatActivity {
                 } else {
 //                    Toast.makeText(getApplicationContext(),"শ্ৰেণীৰ দিন",Toast.LENGTH_SHORT).show();
                     status.setText("শ্ৰেণীৰ দিন");
-                    event.setText("");
-                    event.setVisibility(View.INVISIBLE);
-                    bondho.setVisibility(View.INVISIBLE);
+
+                    event.setVisibility(View.VISIBLE);
+                    bondho.setVisibility(View.VISIBLE);
+                    event.setText((String)dictionary.get(asd.format(dateClicked)));
                 }
                 // Toast.makeText(getApplicationContext(),sdf.format(dateClicked),Toast.LENGTH_SHORT).show();
             }
@@ -186,8 +219,7 @@ public class Main2Activity extends AppCompatActivity {
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 check mCHeck = new check(firstDayOfNewMonth);
                 food.setText(mCHeck.getString());
-
-                actionBar.setTitle(dateFormatMonth.format(firstDayOfNewMonth));
+                month.setText(dateFormatMonth.format(firstDayOfNewMonth));
                 date_1.setText(sdfo.format(firstDayOfNewMonth));
 
                 String dayoftheweek = sdf.format(firstDayOfNewMonth);
@@ -215,9 +247,12 @@ public class Main2Activity extends AppCompatActivity {
                 } else {
 
                     status.setText("শ্ৰেণীৰ দিন");
-                    event.setText("");
-                    event.setVisibility(View.INVISIBLE);
-                    bondho.setVisibility(View.INVISIBLE);
+
+                    event.setVisibility(View.VISIBLE);
+                    bondho.setVisibility(View.VISIBLE);
+                     event.setText((String)dictionary.get(asd.format(firstDayOfNewMonth)));
+
+
                 }
 
             }
